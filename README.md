@@ -76,8 +76,8 @@ torch.exp() → Predicted Price (₦)
 - Target: log(price) for numerical stability
 - Validation strategy: K-Fold Cross Validation
 - Average Validation Loss: ~0.48
-- Optimizer: Adam with weight decay
-- Regularization: Dropout (0.2 / 0.1)
+- Optimizer: Stochastic gradient descent
+- Regularization: weight decay
 
 ---
 
