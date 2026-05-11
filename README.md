@@ -60,9 +60,9 @@ Built on **24,326 real Nigerian property listings** across **25 states** and **1
 ```
 Input Layer (228 features)
         ↓
-LazyLinear → 256 neurons → ReLU → Dropout(0.2)
+LazyLinear → 256 neurons → ReLU → 
         ↓
-Linear → 128 neurons → ReLU → Dropout(0.1)
+Linear → 128 neurons → ReLU → 
         ↓
 Linear → 64 neurons → ReLU
         ↓
