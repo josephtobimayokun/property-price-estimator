@@ -48,7 +48,7 @@ const App = () => {
 
     try {
       // TODO: Replace with your actual model API endpoint
-      const res = await fetch("http://localhost:8000/predict", {
+      const res = await fetch("https://property-price-estimator-99f3.onrender.com/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
