@@ -1,195 +1,137 @@
-I'm# 🏠 Property Price Estimator
-
-> AI-powered Nigerian property price estimator built with PyTorch MLP, FastAPI, and React
-
-![Python](https://img.shields.io/badge/Python-3.10-blue)
-![PyTorch](https://img.shields.io/badge/PyTorch-2.0-red)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.100-green)
-![React](https://img.shields.io/badge/React-18-blue)
-![License](https://img.shields.io/badge/License-MIT-yellow)
 ![Status](https://img.shields.io/badge/Status-Live-brightgreen)
 
----
 
-## 🌐 Live Demo
 
-| | Link |
-|---|---|
-| **Frontend** | https://property-price-estimator-ecru.vercel.app |
-| **API** | https://property-price-estimator-99f3.onrender.com |
-| **API Docs** | https://property-price-estimator-99f3.onrender.com/docs |
 
----
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100-009688?logo=fastapi)
 
-## 🌍 Overview
 
-**Property Price Estimator** is a full-stack machine learning application that predicts Nigerian property prices in real time. Users select a property type, location, and features — and the app instantly returns an AI-powered market valuation.
 
-Built on **24,326 real Nigerian property listings** across **25 states** and **189 towns**.
 
----
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)
 
-## ✨ Features
 
-- 🔮 Real-time price predictions powered by a PyTorch MLP model
-- 🗺 Covers 25 Nigerian states and 189 towns
-- 🏘 Supports 7 property types — Detached Duplex, Bungalow, Block of Flats and more
-- 📊 Returns estimated price, price range floor/ceiling, and confidence score
-- 💡 Market insight generated per prediction
-- 📱 Fully responsive — works on mobile and desktop
-- ⚡ Fast inference via FastAPI REST API
+
+
+![PyTorch](https://img.shields.io/badge/PyTorch-2.0-EE4C2C?logo=pytorch)
+
+
+
+
+![License](https://img.shields.io/badge/License-MIT-blue)
+
+
+
+> Precision real estate price evaluation for the Nigerian Property Market.
+
+**Live Demo:** [property-price-estimator-ecru.vercel.app](https://property-price-estimator-ecru.vercel.app)
 
 ---
 
-## 🛠 Tech Stack
+## Screenshot
 
-| Layer | Technology |
-|-------|-----------|
-| ML Model | PyTorch MLP (2 hidden layers, 256→128→64→1) |
-| Backend | FastAPI (Python) |
-| Frontend | React + Vite |
-| Training | K-Fold Cross Validation |
-| Encoding | One-Hot Encoding (pd.get_dummies) |
-| Backend Deployment | Render |
-| Frontend Deployment | Vercel |
+
+
+![NaijaHomes ML Demo](./screenshot.png)
+
+
 
 ---
 
-## 🧠 Model Architecture
+## Training Progress
 
-```
-Input Layer (228 features)
-        ↓
-LazyLinear → 256 neurons → ReLU → 
-        ↓
-Linear → 128 neurons → ReLU → 
-        ↓
-Linear → 64 neurons → ReLU
-        ↓
-Linear → 1 output (log price)
-        ↓
-torch.exp() → Predicted Price (₦)
-```
 
-**Training Details:**
-- Dataset: 24,326 Nigerian property listings
-- Target: log(price) for numerical stability
-- Validation strategy: K-Fold Cross Validation
-- Average Validation Loss: ~0.48
-- Optimizer: Stochastic gradient descent
-- Regularization: weight decay
+
+![Training Progress](./training_progress.png)
+
+
+
+The model converges cleanly with train and validation loss tracking closely,
+confirming no overfitting across 100 epochs.
 
 ---
 
-## 🔌 API Reference
+## Overview
 
-### GET /
-Health check endpoint.
+NaijaHomes ML is a full-stack machine learning application that predicts 
+property market prices across Nigeria. Given property attributes such as 
+type, location, bedrooms, bathrooms, toilets, and parking, the model returns 
+an estimated market value with a low/best/high confidence range.
 
-**Response:**
-```json
-{"status": "NaijaEstimate API is running"}
-```
-
-### POST /predict
-
-**Request:**
-```json
-{
-  "bedrooms": 3,
-  "bathrooms": 2,
-  "toilets": 2,
-  "parking_space": 1,
-  "title": "Detached Duplex",
-  "state": "Lagos",
-  "town": "Lekki"
-}
-```
-
-**Response:**
-```json
-{
-  "estimated_price": 85000000,
-  "price_range_low": 72250000,
-  "price_range_high": 97750000,
-  "confidence_score": 82,
-  "market_insight": "Estimated value for a Detached Duplex in Lekki, Lagos based on 3 bedrooms and 2 bathrooms."
-}
-```
+Built as part of Microlink's mission to deliver AI-powered tools 
+for African markets.
 
 ---
 
-## 📁 Project Structure
+## Model Architecture
 
-```
-property-price-estimator/
-├── backend/
-│   ├── main.py           # FastAPI server and predict endpoint
-│   ├── mlp.params        # Trained PyTorch model weights
-│   └── requirements.txt  # Python dependencies
-│
-└── frontend/
-    ├── src/
-    │   └── App.jsx       # React app with API integration
-    ├── package.json
-    └── vite.config.js
-```
+| Component        | Detail                        |
+|------------------|-------------------------------|
+| Framework        | PyTorch                       |
+| Architecture     | MLP (Multi-Layer Perceptron)  |
+| Hidden Layer     | 256 units, ReLU activation    |
+| Output           | 1 unit (log-transformed price)|
+| Regularization   | L2 Weight Decay (λ = 0.001)   |
+| Avg. Val. Loss   | 0.393 (log-scale MAE)         |
+| Training Epochs  | 100                           |
+| Features         | ~226 (one-hot encoded)        |
+
+**Target variable** is log-transformed to handle price skewness,
+with predictions exponentiated back to Naira on inference.
 
 ---
 
-## 🚀 Running Locally
+## Features
 
-### Prerequisites
-- Python 3.10+
-- Node.js 18+
+- Predicts property prices across **36 Nigerian states**
+- Supports multiple property types (Detached Bungalow, Duplex, Flat, etc.)
+- Returns **Low / Best / High** price confidence range
+- Sub-second inference via FastAPI backend
+- Fully responsive React frontend
+
+---
+
+## Tech Stack
+
+| Layer      | Technology                  |
+|------------|-----------------------------|
+| Frontend   | React 18, Vite, TailwindCSS |
+| Backend    | FastAPI, Python             |
+| ML         | PyTorch, Pandas, NumPy      |
+| Deployment | Vercel (FE), Render (BE)    |
+
+---
+
+## Project Structure
+naijahomes-ml/
+├── frontend/         # React + Vite app
+│   └── src/
+│       └── App.jsx
+├── backend/          # FastAPI server
+│   ├── main.py
+│   ├── model.py
+│   ├── model.params
+│   └── requirements.txt
+└── README.md
+---
+
+## Local Setup
 
 ### Backend
-
 ```bash
 cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload
-```
-
-API runs at: `http://localhost:8000`
-Interactive docs: `http://localhost:8000/docs`
-
-### Frontend
-
-```bash
+Frontend
 cd frontend
 npm install
 npm run dev
-```
-
-App runs at: `http://localhost:5173`
-
----
-
-## 📊 Dataset
-
-- **Source:** Kaggle — Nigerian Houses Price Dataset
-- **Size:** 24,326 listings
-- **States:** 25 Nigerian states
-- **Towns:** 189 towns
-- **Features:** bedrooms, bathrooms, toilets, parking space, property type, state, town
-- **Target:** Sale price (₦)
-
----
-
-## 👤 Author
-
-**Joseph Tobi Mayokun**
-- GitHub: [@josephtobimayokun](https://github.com/josephtobimayokun)
-- LinkedIn: [joseph-tobi-063576361](https://www.linkedin.com/in/joseph-tobi-063576361)
-- Founder: Microlink — AI-focused tech startup
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
----
-
-> Built with ❤️ in Nigeria 🇳🇬
+Known Limitations
+Training data is heavily Lagos-weighted (~77% of samples)
+States with limited data are grouped for generalization
+Model performs best on Lagos and Abuja properties
+Author
+Joseph Tobi Mayokun
+Founder, Microlink | ML Engineer
+GitHub ·
+LinkedIn
