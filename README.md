@@ -32,7 +32,7 @@
 
 
 
-![NaijaHomes ML Demo](./iMac-24-1120x736.pn.png)
+![NaijaHomes ML Demo](./IMac-24-1120x736.pn.png)
 
 
 
