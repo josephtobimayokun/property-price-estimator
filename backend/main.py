@@ -22,7 +22,7 @@ FEATURE_COLUMNS = [
     'title_Block of Flats', 'title_Detached Bungalow',
     'title_Detached Duplex', 'title_Semi Detached Bungalow',
     'title_Semi Detached Duplex', 'title_Terraced Bungalow',
-    'title_Terraced Duplexes', 'title_nan',
+    'title_Terraced Duplexes',
     'town_Aba', 'town_Abeokuta North', 'town_Abeokuta South',
     'town_Abraka', 'town_Ado-Ekiti', 'town_Ado-Odo/Ota',
     'town_Afijio', 'town_Agbara', 'town_Agbara-Igbesa',
@@ -78,14 +78,14 @@ FEATURE_COLUMNS = [
     'town_Utako', 'town_Uvwie', 'town_Uyo',
     'town_Victoria Island (VI)', 'town_Warri', 'town_Wumba',
     'town_Wuse', 'town_Wuse 2', 'town_Wuye', 'town_Yaba',
-    'town_Yenagoa', 'town_Yewa South', 'town_nan',
+    'town_Yenagoa', 'town_Yewa South',
     'state_Abia', 'state_Abuja', 'state_Akwa Ibom',
     'state_Anambara', 'state_Bayelsa', 'state_Borno',
     'state_Cross River', 'state_Delta', 'state_Edo', 'state_Ekiti',
     'state_Enugu', 'state_Imo', 'state_Kaduna', 'state_Kano',
     'state_Katsina', 'state_Kogi', 'state_Kwara', 'state_Lagos',
     'state_Nasarawa', 'state_Niger', 'state_Ogun', 'state_Osun',
-    'state_Oyo', 'state_Plateau', 'state_Rivers', 'state_nan',
+    'state_Oyo', 'state_Plateau', 'state_Rivers',
 ]
 
 INPUT_DIM = len(FEATURE_COLUMNS)
@@ -95,11 +95,9 @@ class HousePriceMLP(nn.Module):
     def __init__(self):
         super().__init__()
         self.net = nn.Sequential(
-            nn.LazyLinear(128),
+            nn.LazyLinear(256),
             nn.ReLU(),
-            nn.LazyLinear(64),
-            nn.ReLU(),
-            nn.LazyLinear(1)
+            nn.LazyLinear(1),
         )
 
     def forward(self, x):
@@ -109,7 +107,7 @@ class HousePriceMLP(nn.Module):
 model = HousePriceMLP()
 dummy = torch.zeros(1, INPUT_DIM)
 model(dummy)
-model.load_state_dict(torch.load("mlp.params"))
+model.load_state_dict(torch.load("house_price.param"))
 model.eval()
 
 
@@ -148,7 +146,9 @@ def predict(data: HouseInput):
         price = float(np.exp(log_price))
 
     return {
-        "estimated_price": round(price)
+        "estimated_price": round(price),
+    	"low_price": round(price / 1.46),
+	"high_price": round(price * 1.46),
     }
 
 
