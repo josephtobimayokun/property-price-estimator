@@ -1,0 +1,144 @@
+.app_name {
+  border: 2px solid #10b981;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 400;
+  font-size: 0.7rem;
+  color: #10b981;
+  width: fit-content;
+}
+
+.active_dot {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.description {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+.details {
+  color: gray;
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+
+hr {
+  max-width: 500px;
+  margin-top: 20px;
+  border: 1px solid gray;
+}
+
+.input_fields {
+  background-color: gray;
+  border-radius: 20px;
+  width: 500px;
+  height: 200px;
+}
+
+.options {
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  width: 100%;
+  outline: none;
+  background-color: #f5f5f5;
+  color: black;
+  font-weight: 400;
+}
+
+button {
+  margin-top: 30px;
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background-color: #10b981;
+  color: white;
+  font-weight: 600;
+  font-size: 0.99rem;
+}
+
+.resultHeader {
+  margin-top: 20px;
+  border-radius: 10px;
+  padding: 32px 28px 24px;
+  border: 2px solid #f5f5f5;
+}
+
+.resultEyebrow {
+  font-size: 11;
+  letter-spacing: 0.2em;
+  color: #10b981;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.resultPrice {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #10b981, #005d08);
+  background-clip: text;
+  line-height: 1.1;
+  margin-bottom: 8;
+}
+
+.resultLocation {
+  font-size: 14;
+  color: gray;
+  font-style: italic;
+  font-weight: 300;
+  margin-top: 10px;
+}
+
+.price_details {
+  background-color: rgba(77, 217, 172, 0.08);
+  border: 1px solid rgba(77, 217, 172, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.error {
+  background-color: red;
+  margin-top: 20px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+@media(min-width: 768px) {
+  .app_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .description {
+    display: flex;
+    justify-content: center;
+  }
+  .details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .options {
+    border: none;
+    border-radius: 5px;
+    height: 25px;
+    width: max-content;
+    outline: none;
+    background-color: #f5f5f5;
+    color: black;
+    font-weight: 400;
+  }
+  .options_canvas {
+    display: flex;
+    justify-content: space-between;
+  }
+}
