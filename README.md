@@ -32,7 +32,7 @@
 
 
 
-![NaijaHomes ML Demo](./screenshot.png)
+![NaijaHomes ML Demo](./iMac-24-1120x736.pn.png)
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-![Training Progress](./training_progress.png)
+![Training Progress](./validation_loss.png)
 
 
 
